@@ -1,19 +1,19 @@
 let email = [];
 let btnAdd = document.querySelector('button');
 let input = document.querySelector('input');
-let cat = [];
+let pic__source = [];
 const pic__box = document.getElementById('main__pic');
 const url = "https://picsum.photos/";
 
 // function refresh__image(){
-//  let cat =  document.getElementById('main__pic').src="https://picsum.photos/" + calc__num();
-//  return cat;
+//  let pic__source =  document.getElementById('main__pic').src="https://picsum.photos/" + calc__num();
+//  return pic__source;
 // }
 // refresh__image()
 
 function addemail(){
     
-    
+    //not been able to figure out why the source gets set but changes when original does so when the email is not doing that
     let template = email.map(email => `<div><h3>${email}</h3> <img id=${email} src = ""></div>`).join('\n');
     document.getElementById('try').innerHTML = template;
 
@@ -44,7 +44,7 @@ submit.addEventListener( 'click',() => {
     }
     else {
         email.push(input.value);
-        cat.push(main__pic.src);
+     pic__source.push(main__pic.src);
         addemail();
         input.value = '';
         
