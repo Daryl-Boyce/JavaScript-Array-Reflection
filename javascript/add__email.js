@@ -1,82 +1,99 @@
-let email = [];
+
 let btnAdd = document.querySelector('button');
 let input = document.querySelector('input');
 let pic__source = [];
+let pic__box__2 = new Image(200, 200);
 const pic__box = document.getElementById('main__pic');
 const url = "https://picsum.photos/";
-
-// function refresh__image(){
-//  let pic__source =  document.getElementById('main__pic').src="https://picsum.photos/" + calc__num();
-//  return pic__source;
-// }
-// refresh__image()
-
-function addemail(){
-    
-    //not been able to figure out why the source gets set but changes when original does so when the email is not doing that
-    let template = email.map(email => `<div><h3>${email}</h3> <img id=${email} src = ""></div>`).join('\n');
-    document.getElementById('try').innerHTML = template;
-
-    document.getElementById(email).innerHTML = pic__box;
-    // document.getElementById(${email});
-
-    // document.getElementById(email).lastChild.setAttribute('src', main__pic.src);
-
-    
-
-    
-}
-
-
+let user__data = [
+    // { name:"", url:""}
+];
+let obj;
+let i = 0;
+let new__user = true;
+let profile__name = [];
+//
+//
+//Listens for click of the button labeled 'new__image' and assigns a new image to the main__pic
+new__image.addEventListener('click',calc__num);
+//
+//
 //Creates random number with no decimal place and asigns it to 'calc__num'
 function calc__num() {
     let r = Math.floor(Math.random() * (200 - 250) + 250);
     pic__box.src= url + r;
   }
-  calc__num();
+// 
+// 
+// 
+function store__user__data(){
 
+ let profile = [input.value, pic__box.src];
+ 
+    user__data.push(profile);
+    profile__name.push(input.value);
 
+    console.log(user__data);
+}
+// 
+// 
+// 
+function find__user__data(){
+
+    let obj = user__data.find(user__data => user__data['name'] === input.value);
+
+    console.log(user__data);
+    document.getElementById('main__display').innerHTML =  `<div id=${obj['name']} ><h3>${obj['name']}</h3><img src=${obj['url']} ></div>`;
+
+}
+// 
+// 
+// 
+function additional__image(){
+
+    user__data[i].push(pic__box.src);
+}
+// 
+// 
+// Watches for click on button with value of 'submit' , runs checks for empty input value, checks for
+// matching email and then exicutes addemail function above if sucessful
 submit.addEventListener( 'click',() => { 
     if (input.value.length == "") {
         console.log("yes mate");
-    } else if (email.includes(input.value)){
-        console.log("yes email mate");
     }
-    else {
-        email.push(input.value);
-     pic__source.push(main__pic.src);
-        addemail();
-        input.value = '';
+    else{
+        for ( let i = 0; i < profile__name.length; i++){
+
+            if (profile__name.indexOf(input.value) === i){
+                new__user = false;
+                user__data[i].push(pic__box.src);
+                console.log(" Value exists!");
+            }
+        }
+
+        if(new__user == true) {
+            store__user__data();
+            input.value = '';
+            obj = "";
+            
+        }
+        new__user = true;
         
-        
-        
-        
-        
-    }
-});
-
-//Listens for click of the button labeled 'new__image' and assigns a new image to the main__pic
-new__image.addEventListener('click',calc__num);
-
-console.log(email);
-
-
-// //Watches for button click and exicutes code to add all data to array and display it.
-// btnAdd.addEventListener('click', () =>{
-//    if (input.value.length == "") {
-//     document.getElementById('main__pic').value = ("https://picsum.photos/200") + calc__num;
-//    }
-//    else {
-//     email.push(input.value);
-//     input.value = '';
-//     addemail();
-    
-    
-//    }
-// });
+    }    
+    } 
+)
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+// user__data.find(user__data => user__data['name'] === input.value)
