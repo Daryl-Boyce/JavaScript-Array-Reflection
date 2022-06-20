@@ -5,9 +5,7 @@ let pic__source = [];
 let pic__box__2 = new Image(200, 200);
 const pic__box = document.getElementById('main__pic');
 const url = "https://picsum.photos/";
-let user__data = [
-    // { name:"", url:""}
-];
+let user__data = [];
 let obj;
 let i = 0;
 let new__user = true;
@@ -27,7 +25,6 @@ function calc__num() {
 // 
 // 
 function store__user__data(){
-
  let profile = [input.value, pic__box.src];
  
     user__data.push(profile);
@@ -39,46 +36,45 @@ function store__user__data(){
 // 
 // 
 function find__user__data(){
-
     let obj = user__data.find(user__data => user__data['name'] === input.value);
 
     console.log(user__data);
-    document.getElementById('main__display').innerHTML =  `<div id=${obj['name']} ><h3>${obj['name']}</h3><img src=${obj['url']} ></div>`;
-
+    document.getElementById('main__display').innerHTML =  "<div id=${obj['name']} ><h3>${obj['name']}</h3><img src=${obj['url']} ></div>";
 }
 // 
 // 
 // 
 function additional__image(){
-
     user__data[i].push(pic__box.src);
 }
 // 
 // 
+// 
+// function add__display__box(){
+//     document.getElementById('main__display')
+// }
+// 
 // Watches for click on button with value of 'submit' , runs checks for empty input value, checks for
 // matching email and then exicutes addemail function above if sucessful
 submit.addEventListener( 'click',() => { 
-    if (input.value.length == "") {
-        console.log("yes mate");
+    if(input.value.length>0 && input.value.replace(/\s/g, '').length==0) { // string has only spaces } {
+        console.log("No Input");
     }
     else{
         for ( let i = 0; i < profile__name.length; i++){
-
             if (profile__name.indexOf(input.value) === i){
                 new__user = false;
-                user__data[i].push(pic__box.src);
+                // user__data[i].push(pic__box.src);
                 console.log(" Value exists!");
             }
         }
-
         if(new__user == true) {
             store__user__data();
+            find__user__data();
             input.value = '';
             obj = "";
-            
         }
         new__user = true;
-        
     }    
     } 
 )
